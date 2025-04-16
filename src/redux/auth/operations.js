@@ -39,3 +39,22 @@ export const fetchLogOutUser = createAsyncThunk(
     }
   }
 );
+
+export const fetchCurrentUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      setAuthorizationToken(token);
+      const { data } = await axiosAPI.get("/users/current");
+      return data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err);
+    }
+  },
+  {
+    condition(_, thunkAPI) {
+      return Boolean(thunkAPI.getState().auth.token);
+    }
+  }
+);
