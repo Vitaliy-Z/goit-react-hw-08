@@ -6,7 +6,7 @@ import {
 } from "../../redux/contacts/selectors";
 import Header from "../header/Header";
 
-import style from "./Container.module.css";
+import styles from "./Container.module.css";
 import Loader from "../loader/Loader";
 
 export default function Container({ children }) {
@@ -16,7 +16,7 @@ export default function Container({ children }) {
   const contactsError = useSelector(selectContactsError);
 
   return (
-    <div className={style.container}>
+    <div className={styles.container}>
       <Header />
       {authLoading ?? contactsLoading ? (
         <Loader />
@@ -27,6 +27,12 @@ export default function Container({ children }) {
       ) : (
         children
       )}
+      <p className={styles.footer}>
+        Project created by{" "}
+        <a href="https://github.com/Vitaliy-Z" target="_black">
+          Vitalii Zvieriev
+        </a>
+      </p>
     </div>
   );
 }
