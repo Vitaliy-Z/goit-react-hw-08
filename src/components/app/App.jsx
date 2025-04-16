@@ -1,39 +1,29 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "../../redux/contactsOps";
-import { PropagateLoader } from "react-spinners";
-import ContactForm from "../contactForm/ContactForm";
-import SearchBox from "../searchBox/SearchBox";
-import ContactList from "../contactList/ContactList";
 // It's project was created by Vitalii Zvieriev
+import { lazy, Suspense } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
+
+import Loader from "../loader/Loader";
+const Container = lazy(() => import("../container/Container"));
+const HomePage = lazy(() => import("../../pages/HomePage"));
+const RegisterPage = lazy(() => import("../../pages/RegisterPage"));
+const LoginPage = lazy(() => import("../../pages/LoginPage"));
+
 import "./App.css";
-import { selectErorr, selectLoading } from "../../redux/contactsSlice";
+import ContactsPage from "../../pages/ContactsPage";
 
 function App() {
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectErorr);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
   return (
-    <>
-      <p>
-        Project created by{" "}
-        <a href="https://github.com/Vitaliy-Z" target="_black">
-          Vitalii Zvieriev
-        </a>
-      </p>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <hr />
-      <SearchBox />
-      {loading && <PropagateLoader color="red" size={17} />}
-      {error && <p>Error...</p>}
-      {!loading && !error && <ContactList />}
-    </>
+    <Container>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
+    </Container>
   );
 }
 

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeFilter } from "../../redux/filtersSlice";
+import { changeFilter } from "../../redux/filters/slice";
 import styles from "./SearchBox.module.css";
 
 export default function SearchBox() {
@@ -12,8 +12,8 @@ export default function SearchBox() {
   };
   // It's project was created by Vitalii Zvieriev
   return (
-    <div>
-      <p>Search contact:</p>
+    <div className={styles.wrapper}>
+      <p className={styles.text}>Search contact:</p>
       <input
         className={styles.searchInput}
         type="text"

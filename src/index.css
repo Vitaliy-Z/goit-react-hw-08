@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #ffffffde;
   background-color: #242424;
 
   font-synthesis: none;
@@ -22,17 +22,21 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+input {
+  padding: 7px 10px;
+  font-size: 1.2em;
+  background-color: #3b3b3b;
+  border: 1px solid #858585;
+  border-radius: 3px;
+  outline: none;
+}
+input:focus {
+  border-color: #ffffff;
 }
 
 button {

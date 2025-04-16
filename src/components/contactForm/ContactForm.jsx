@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 import styles from "./ContactForm.module.css";
 // It's project was created by Vitalii Zvieriev
 const NewUserShema = object().shape({
@@ -25,6 +25,7 @@ export default function ContactForm() {
     }
 
     dispatch(addContact(data));
+
     action.resetForm();
   };
 
